@@ -161,22 +161,37 @@ class Transmision {
 // Clase principal para la demostración
 public class ComponentesVehiculares {
     public static void main(String[] args) {
-        System.out.println("Ejecutando demostración de Componentes Vehiculares (v1.0)...");
-        // Por ahora, solo demostramos la creación de objetos de las clases implementadas.
+        System.out.println("Ejecutando demostración de Componentes Vehiculares (v3.0)...");
         
-        // Creamos un objeto Motor
-        Motor motor1 = new Motor("Gasolina Turbo", 2.0, 250);
-        motor1.encender();
-
-        // Creamos un objeto Transmision
-        Transmision trans1 = new Transmision("Automática", 8, "AWD");
-        trans1.cambiarMarcha(3);
-        
-        // Creamos un objeto Vehiculo
+        // Componentes base (Vehiculo, Motor, Transmision, Chasis, Neumatico)
         Vehiculo vehiculo1 = new Vehiculo("VIN12345", "Toyota", "Supra", 2024);
         vehiculo1.mostrarInfoVehiculo();
         
-        System.out.println("--- Fin de la demostración v1.0 ---");
+        Motor motor1 = new Motor("Gasolina Turbo", 2.0, 250);
+        motor1.encender();
+
+        Transmision trans1 = new Transmision("Automática", 8, "AWD");
+        trans1.cambiarMarcha(3);
+        
+        Chasis chasis1 = new Chasis("Monocasco", 4.5, 1200.5);
+        chasis1.getPesoTotal();
+        
+        Neumatico neumaticoDelantero = new Neumatico("Michelin", "245/40 R18", 35.0, true);
+        neumaticoDelantero.verificarPresion();
+
+        // Nuevos Componentes (v3.0 - SistemaElectrico y SistemaFrenos)
+        System.out.println("\n--- Demostración de Sistemas ---");
+        
+        SistemaElectrico sistemaE = new SistemaElectrico(12.5, 300, true);
+        sistemaE.activarLuces(true);
+        System.out.println("¿Tiene luces automáticas? " + sistemaE.isTieneLucesAutomaticas());
+
+        SistemaFrenos sistemaF = new SistemaFrenos("Disco Ventilado", true, "Medio");
+        sistemaF.frenar();
+        sistemaF.setEstadoPastillas("Bajo");
+        sistemaF.frenar();
+
+        System.out.println("\n--- Fin de la demostración v3.0 ---");
     }
 }
 /**
@@ -285,5 +300,103 @@ class Neumatico {
 
     public void setEstadoDesgaste(boolean estadoDesgaste) {
         this.estadoDesgaste = estadoDesgaste;
+    }
+}
+/**
+ * Clase SistemaElectrico: Describe el sistema eléctrico (batería, luces, sensores).
+ */
+class SistemaElectrico {
+    // Atributos
+    private double voltajeBateria; // En voltios
+    private int consumoWatts;
+    private boolean tieneLucesAutomaticas;
+
+    // Constructor
+    public SistemaElectrico(double voltajeBateria, int consumoWatts, boolean tieneLucesAutomaticas) {
+        this.voltajeBateria = voltajeBateria;
+        this.consumoWatts = consumoWatts;
+        this.tieneLucesAutomaticas = tieneLucesAutomaticas;
+    }
+
+    // Método de Negocio: Simula la activación de luces
+    public void activarLuces(boolean encender) {
+        if (encender) {
+            System.out.println("Sistema Eléctrico: Luces encendidas. Consumo total: " + consumoWatts + "W.");
+        } else {
+            System.out.println("Sistema Eléctrico: Luces apagadas.");
+        }
+    }
+
+    // Getters y Setters
+    public double getVoltajeBateria() {
+        return voltajeBateria;
+    }
+
+    public void setVoltajeBateria(double voltajeBateria) {
+        this.voltajeBateria = voltajeBateria;
+    }
+
+    public int getConsumoWatts() {
+        return consumoWatts;
+    }
+
+    public void setConsumoWatts(int consumoWatts) {
+        this.consumoWatts = consumoWatts;
+    }
+
+    public boolean isTieneLucesAutomaticas() {
+        return tieneLucesAutomaticas;
+    }
+
+    public void setTieneLucesAutomaticas(boolean tieneLucesAutomaticas) {
+        this.tieneLucesAutomaticas = tieneLucesAutomaticas;
+    }
+}
+
+/**
+ * Clase SistemaFrenos: Información sobre frenos (tipo, discos, ABS, estado).
+ */
+class SistemaFrenos {
+    // Atributos
+    private String tipoFreno; // Ejemplo: "Disco Ventilado", "Tambor"
+    private boolean tieneABS;
+    private String estadoPastillas; // Ejemplo: "Nuevo", "Medio", "Bajo"
+
+    // Constructor
+    public SistemaFrenos(String tipoFreno, boolean tieneABS, String estadoPastillas) {
+        this.tipoFreno = tipoFreno;
+        this.tieneABS = tieneABS;
+        this.estadoPastillas = estadoPastillas;
+    }
+
+    // Método de Negocio: Simula la acción de frenado
+    public void frenar() {
+        String absStatus = tieneABS ? " con ABS activado" : "";
+        System.out.println("Sistema de Frenos: Aplicando frenado de tipo " + tipoFreno + absStatus + ". Estado de pastillas: " + estadoPastillas + ".");
+    }
+
+    // Getters y Setters
+    public String getTipoFreno() {
+        return tipoFreno;
+    }
+
+    public void setTipoFreno(String tipoFreno) {
+        this.tipoFreno = tipoFreno;
+    }
+
+    public boolean isTieneABS() {
+        return tieneABS;
+    }
+
+    public void setTieneABS(boolean tieneABS) {
+        this.tieneABS = tieneABS;
+    }
+
+    public String getEstadoPastillas() {
+        return estadoPastillas;
+    }
+
+    public void setEstadoPastillas(String estadoPastillas) {
+        this.estadoPastillas = estadoPastillas;
     }
 }
