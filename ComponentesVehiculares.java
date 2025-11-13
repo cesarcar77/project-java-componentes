@@ -179,3 +179,111 @@ public class ComponentesVehiculares {
         System.out.println("--- Fin de la demostración v1.0 ---");
     }
 }
+/**
+ * Clase Chasis: Información sobre el tipo de chasis, dimensiones y peso.
+ */
+class Chasis {
+    // Atributos
+    private String tipoEstructura; // Ejemplo: Monocasco, Bastidor (Body-on-frame)
+    private double longitudMetros;
+    private double pesoKg;
+
+    // Constructor
+    public Chasis(String tipoEstructura, double longitudMetros, double pesoKg) {
+        this.tipoEstructura = tipoEstructura;
+        this.longitudMetros = longitudMetros;
+        this.pesoKg = pesoKg;
+    }
+
+    // Método de Negocio: Reporta el peso total
+    public double getPesoTotal() {
+        System.out.println("Chasis tipo " + tipoEstructura + ". Peso base: " + pesoKg + " kg.");
+        return pesoKg;
+    }
+
+    // Getters y Setters
+    public String getTipoEstructura() {
+        return tipoEstructura;
+    }
+
+    public void setTipoEstructura(String tipoEstructura) {
+        this.tipoEstructura = tipoEstructura;
+    }
+
+    public double getLongitudMetros() {
+        return longitudMetros;
+    }
+
+    public void setLongitudMetros(double longitudMetros) {
+        this.longitudMetros = longitudMetros;
+    }
+
+    public double getPesoKg() {
+        return pesoKg;
+    }
+
+    public void setPesoKg(double pesoKg) {
+        this.pesoKg = pesoKg;
+    }
+}
+
+/**
+ * Clase Neumatico: Representa una llanta (marca, tamaño, presión).
+ */
+class Neumatico {
+    // Atributos
+    private String marca;
+    private String tamano; // Ejemplo: 205/55 R16
+    private double presionPSI;
+    private boolean estadoDesgaste; // true si está en buen estado
+
+    // Constructor
+    public Neumatico(String marca, String tamano, double presionPSI, boolean estadoDesgaste) {
+        this.marca = marca;
+        this.tamano = tamano;
+        this.presionPSI = presionPSI;
+        this.estadoDesgaste = estadoDesgaste;
+    }
+
+    // Método de Negocio: Verifica si la presión es adecuada (ejemplo simple)
+    public void verificarPresion() {
+        if (presionPSI < 30.0) {
+            System.out.println("ADVERTENCIA: Baja presión en el neumático " + tamano + ". Presión actual: " + presionPSI + " PSI.");
+        } else {
+            System.out.println("Presión adecuada (" + presionPSI + " PSI) en neumático " + marca + ".");
+        }
+    }
+
+    // Getters y Setters
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(String tamano) {
+        this.tamano = tamano;
+    }
+
+    public double getPresionPSI() {
+        return presionPSI;
+    }
+
+    public void setPresionPSI(double presionPSI) {
+        this.presionPSI = presionPSI;
+    }
+
+    public boolean isEstadoDesgaste() {
+        return estadoDesgaste;
+    }
+
+    public void setEstadoDesgaste(boolean estadoDesgaste) {
+        this.estadoDesgaste = estadoDesgaste;
+    }
+}
